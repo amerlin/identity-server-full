@@ -19,6 +19,7 @@ namespace IdentityServerDemo
         {
             //ADD IDENTITY SERVER
             services.AddIdentityServer()
+                .AddInMemoryApiResources(InMemoryConfig.GetApiResources())
                 .AddInMemoryIdentityResources(InMemoryConfig.GetIdentityResources())
                 .AddTestUsers(InMemoryConfig.GetUsers())
                 .AddInMemoryClients(InMemoryConfig.GetClients())

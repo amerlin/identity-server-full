@@ -57,16 +57,15 @@ namespace IdentityServerDemo.Configuration
                     ClientId = "company-employee",
                     ClientSecrets = new[] {new Secret("demopassword".Sha512())},
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPasswordAndClientCredentials,   //flow types
-                    AllowedScopes =  { IdentityServerConstants.StandardScopes.OpenId}
+                    AllowedScopes =  { IdentityServerConstants.StandardScopes.OpenId, "companyApi"}
                 }
             };
         }
 
-
-}
-
-
-
-    
+        //RETURN API RESOURCES
+        public static IEnumerable<ApiResource> GetApiResources() =>
+            new List<ApiResource>() { new ApiResource("companyApi", "description") };
+       
+    }
 
 }
