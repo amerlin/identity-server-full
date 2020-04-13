@@ -25,6 +25,15 @@ namespace IdentityServerDemo
                 .AddInMemoryClients(InMemoryConfig.GetClients())
                 .AddDeveloperSigningCredential();
 
+
+            //add authentication
+            services.AddAuthentication("Bearer").AddJwtBearer("Bearer", opt =>
+            {
+                opt.RequireHttpsMetadata = false;
+                opt.Authority = "https://localhost:5005";
+                opt.Audience = "companyApi";
+            });
+
             //add view and controller
             services.AddControllersWithViews();
 
@@ -47,19 +56,16 @@ namespace IdentityServerDemo
             //ADD IDENTITY SERVER
             app.UseIdentityServer();
 
-            //use authoriation
+            //Add authentication
+            app.UseAuthentication();
+
+            //use Authorization
             app.UseAuthorization();
 
             //use endpoint
             app.UseEndpoints(endpoint => { endpoint.MapDefaultControllerRoute(); });
 
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    endpoints.MapGet("/", async context =>
-            //    {
-            //        await context.Response.WriteAsync("Hello World!");
-            //    });
-            //});
+          
         }
     }
 }

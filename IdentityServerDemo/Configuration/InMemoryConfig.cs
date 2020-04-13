@@ -56,7 +56,7 @@ namespace IdentityServerDemo.Configuration
                 {
                     ClientId = "company-employee",
                     ClientSecrets = new[] {new Secret("demopassword".Sha512())},
-                    AllowedGrantTypes = GrantTypes.ResourceOwnerPasswordAndClientCredentials,   //flow types
+                    AllowedGrantTypes = GrantTypes.ResourceOwnerPasswordAndClientCredentials,               //flow types for clients
                     AllowedScopes =  { IdentityServerConstants.StandardScopes.OpenId, "companyApi"}
                 }
             };
