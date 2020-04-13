@@ -24,6 +24,9 @@ namespace IdentityServerDemo
                 .AddInMemoryClients(InMemoryConfig.GetClients())
                 .AddDeveloperSigningCredential();
 
+            //add view and controller
+            services.AddControllersWithViews();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -34,10 +37,20 @@ namespace IdentityServerDemo
                 app.UseDeveloperExceptionPage();
             }
 
+            //use static files
+            app.UseStaticFiles();
+
+            //use routing
+            app.UseRouting();
+            
             //ADD IDENTITY SERVER
             app.UseIdentityServer();
 
-            //app.UseRouting();
+            //use authoriation
+            app.UseAuthorization();
+
+            //use endpoint
+            app.UseEndpoints(endpoint => { endpoint.MapDefaultControllerRoute(); });
 
             //app.UseEndpoints(endpoints =>
             //{
